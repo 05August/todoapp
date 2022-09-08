@@ -1,24 +1,16 @@
-import React from 'react';
-import './style.css';
-
-
-const styleTitle={
-  fontWeight: 'bold',
-}
-class TodoItem extends React.Component {
-  render() {
-    return(
-      <div className="box">
-        <div style={styleTitle}>Title: task 1</div>
-        <div>Creator: Loc</div>
-        <div style={{color:'blue',fontWeight: 'bold'}}>Status: New</div>
-        <hr></hr>
-        <div style={styleTitle}>Description:</div>
-        <div className="content">This is a task,This is a task,This is a task,This is a task,This is a task,this is a task,this is a task,this is a task</div>
-      </div>
-      
-    );
-  }
+const TodoItem = () => {
+  return (
+    <div className="containerItem">
+      <p className="containerItem__title">Title: task 1</p>
+      <p className="containerItem__creator">Creator: Loc</p>
+      <p className="containerItem__status containerItem__status--new">Status: New</p>
+      <hr className="containerItem__lineBreak" />
+      <p className="containerItem__description">
+        <p>Description:</p>
+        <p>This is a task, This is a task, This is a task, This is a task, This is a task</p>
+      </p>
+    </div>
+  )
 }
 
 export default TodoItem;
