@@ -1,0 +1,13 @@
+.containerBody{
+  margin-left: 150px;
+  max-height: 570px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.containerBody > div { 
+  margin-left: 15px; 
+  margin-top: 15px; 
+} 
+
+ 

@@ -1,13 +1,17 @@
-import TodoItem from './component/TodoItem.jsx';
-import Header from './component/Header.jsx';
+import Header from './layout/Header.jsx';
+import Sidebar from './layout/Sidebar.jsx';
+import Body from './layout/Body'
+import Footer from './layout/Footer.jsx';
 import './App.css';
 import './styles/style.css';
 
 function App() {
   return (
     <div className="layout">
-      <TodoItem/>
-      {/* <Header/> */}
+      <Header/>
+      <Sidebar/>
+      <Body/>
+      <Footer/>
     </div>
   );
 }

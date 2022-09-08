@@ -1,0 +1,21 @@
+.containerSidebar {
+  width: 150px;
+  max-height: 570px;
+  height: calc(100vh - 70px);
+  background: #F88F14;
+  position: absolute;
+}
+
+.containerSidebar__item {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #FFFFFF;
+}
+
+.containerSidebar__item>p {
+  font-size: 24px;
+  color: #FFFFFF;
+}
