@@ -1,4 +1,4 @@
-import '../../style/styleHeader.css'
+
 const Header=()=>{
   return <div className="header">
     <div className="new-task">
