@@ -1,17 +1,15 @@
-// import TodoItem from './component/TodoItem.jsx';
+import TodoItem from './component/TodoItem.jsx';
 // import TodoItemVer2 from './component/TodoItemVer2.jsx';
 // import NewComponent from './component/NewComponent.jsx';
-import Header from './component/header/Header.jsx';
+import Header from './component/Header.jsx';
 import './App.css';
+import './styles/style.css';
 
 function App() {
   return (
-    
-    <div>
-      {/* <NewComponent/>
+    <div className="layout">
       <TodoItem/>
-      <TodoItemVer2/> */}
-      <Header/>
+      {/* <Header/> */}
     </div>
   );
 }

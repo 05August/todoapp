@@ -1,0 +1,16 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root{
+  --primary: #675bf1; 
+  --new: #04be00; 
+}
+
+p { 
+  font-size: 14px; 
+  line-height: 18px; 
+} 
+
