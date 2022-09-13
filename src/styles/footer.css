@@ -1,11 +1,13 @@
 .containerFooter {
   width: calc(100% - 150px);
   height: 100px;
-  margin-left: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 150px;
 }
 
 .containerFooter__page {

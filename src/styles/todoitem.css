@@ -1,6 +1,8 @@
 .layout { 
-  width: 1024px; 
-  margin: 15px auto; 
+  width: 1024px;
+  height: 640px;
+  margin: 15px auto;
+  position: relative;
 }
 
 .containerItem { 
@@ -21,6 +23,14 @@
 .containerItem__status--new { 
   color: var(--new); 
 } 
+
+.containerItem__status--doing{
+  color: var(--doing); 
+}
+
+.containerItem__status--done{
+  color: var(--done); 
+}
 
 .containerItem__lineBreak { 
   height: 2px; 
