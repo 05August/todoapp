@@ -1,7 +1,7 @@
 .layout { 
   width: 1024px;
-  height: 640px;
-  margin: 15px auto;
+  height: 100vh;
+  margin: 0px auto;
   position: relative;
 }
 

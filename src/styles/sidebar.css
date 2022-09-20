@@ -1,6 +1,5 @@
 .containerSidebar {
   width: 150px;
-  max-height: 570px;
   height: calc(100vh - 70px);
   background: #F88F14;
   position: absolute;

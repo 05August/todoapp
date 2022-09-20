@@ -68,7 +68,8 @@ const Body= () => {
     })
   }
   return <div className="containerBody">
-    {renderTodoItem()};
+    {renderTodoItem()}
+
   </div>
 }
 
