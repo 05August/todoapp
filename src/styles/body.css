@@ -1,14 +1,12 @@
-
-.containerBody{
+.containerBody {
   margin-left: 150px;
   max-height: 570px;
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center; */
 }
 
-.containerBody > div { 
-  margin-left: 15px; 
-  margin-top: 15px; 
-} 
-
- 
+.containerBody>div {
+  margin-left: 15px;
+  margin-top: 15px;
+}

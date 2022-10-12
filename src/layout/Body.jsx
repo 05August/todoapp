@@ -1,63 +1,15 @@
-import STATUS from "../constants/Constant.jsx"
+import React, { useState } from "react";
 import TodoItem from "../component/TodoItem.jsx";
+import AddNewForm from "../shared/Form.jsx";
+import { MODE, STATUS, TodoList } from '../constants/Constant';
 
-const Body= () => {
-  const {NEW,DOING,DONE}= STATUS;
-  const descriptionData =  'This is a task, This is a task, This is a task, This is a task, This is a task.'; 
-  const todoList = [ 
-    { 
-      title: 'Task 1', 
-      creator: 'Loc', 
-      status: NEW, 
-      description: descriptionData, 
-    }, 
-    { 
-      title: 'Task 2', 
-      creator: 'Loc', 
-      status: DOING, 
-      description: descriptionData, 
-    }, 
-    { 
-      title: 'Task 3', 
-      creator: 'Loc', 
-      status: DONE, 
-      description: descriptionData, 
-    }, 
-    { 
-      title: 'Task 4', 
-      creator: 'Loc', 
-      status: NEW, 
-      description: descriptionData, 
-    }, 
-    { 
-      title: 'Task 5', 
-      creator: 'Loc', 
-      status: DOING, 
-      description: descriptionData, 
-    }, 
-    { 
-      title: 'Task 6', 
-      creator: 'Loc', 
-      status: NEW, 
-      description: descriptionData, 
-    }, 
-    { 
-      title: 'Task 7', 
-      creator: 'Loc', 
-      status: NEW, 
-      description: descriptionData, 
-    }, 
-    { 
-      title: 'Task 8', 
-      creator: 'Loc', 
-      status: DOING, 
-      description: descriptionData, 
-    }, 
-  ]; 
 
-  const renderTodoItem= () => {
-    return todoList.map((item,index)=>{
-      
+
+const Body = ({ mode, handleChangeRenderMode }) => {
+  const [todoItems, setTodoItems] = useState(TodoList);
+
+  const renderTodoItem = () => {
+    return todoItems.map((item, index) => {
       return <TodoItem
         key={`${item.title}_${index}`}
         title={item.title}
@@ -65,12 +17,40 @@ const Body= () => {
         status={item.status}
         description={item.description}
       />
-    })
+    }
+    )
   }
-  return <div className="containerBody">
-    {renderTodoItem()}
 
-  </div>
+  const chooseMode = () => {
+    switch (mode) {
+      case MODE.SHOW_LIST:
+        return renderTodoItem();
+      case MODE.ADD_NEW:
+        return (
+          <AddNewForm
+            handleSubmit={(e) => {
+              e.preventDefault();
+              const data = {
+                title: e.target[0].value,
+                creator: e.target[1].value,
+                description: e.target[2].value,
+                status: STATUS.NEW,
+              };
+              setTodoItems([data, ...todoItems]);
+              handleChangeRenderMode(MODE.SHOW_LIST);
+            }}
+          />
+        );
+      default:
+        return renderTodoItem();
+    }
+  };
+  return (
+    <div className="containerBody">
+      {chooseMode()}
+    </div>
+
+  );
 }
 
 export default Body;

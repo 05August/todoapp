@@ -1,11 +1,11 @@
 
-const Header=()=>{
+const Header = ({ handleCreateNewTask }) => {
   return <div className="containerHeader">
     <div className="containerHeader__left">
-      <button>Create New Task</button>
+      <button onClick={handleCreateNewTask}>Create New Task</button>
     </div>
     <div className="containerHeader__right">
-      <input type="text" placeholder="Type something to search"/>
+      <input type="text" placeholder="Type something to search" />
       <button>Search</button>
     </div>
   </div>
