@@ -3,7 +3,7 @@ import Header from './layout/Header.jsx';
 import Sidebar from './layout/Sidebar.jsx';
 import Body from './layout/Body.jsx'
 import Footer from './layout/Footer.jsx';
-import { MODE } from './constants/Constant.jsx';
+import { MODE } from './constants/Constant.js';
 import Example from './component/Example.jsx';
 import './styles/style.css';
 
@@ -14,19 +14,19 @@ function App() {
     setRenderMode(mode);
   }
   return (
-    // <div className="layout">
-    //   <Header
-    //     handleCreateNewTask={() => handleChangeRenderMode(MODE.ADD_NEW)}
-    //   />
-    //   <Sidebar />
-    //   <Body mode={renderMode} handleChangeRenderMode={handleChangeRenderMode} />
-    //   {renderMode === MODE.SHOW_LIST && <Footer />}
-    // </div>
-
-
-    <div>
-      <Example />
+    <div className="layout">
+      <Header
+        handleCreateNewTask={() => handleChangeRenderMode(MODE.ADD_NEW)}
+      />
+      <Sidebar />
+      <Body mode={renderMode} handleChangeRenderMode={handleChangeRenderMode} />
+      {renderMode === MODE.SHOW_LIST && <Footer />}
     </div>
+
+
+    // <div>
+    //   <Example />
+    // </div>
 
   );
 }
