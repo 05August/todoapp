@@ -15,5 +15,6 @@ export const POSITION_KEYWORD = 9;
 export const MODE = {
   SHOW_LIST: 'showList',
   ADD_NEW: 'addNew',
+  DETAIL_TASK: 'detailTask',
 };
 
