@@ -3,7 +3,7 @@ const RadioCheckboxButton = ({
   title,
   type,
   style,
-  onClick,
+  onChange,
   name,
   disabled,
   isChecked,
@@ -22,7 +22,7 @@ const RadioCheckboxButton = ({
         checked={isChecked}
         name={name}
         value={value}
-        onClick={onClick}
+        onChange={onChange}
       />
       <span />
       <label htmlFor={name}>{title}</label>

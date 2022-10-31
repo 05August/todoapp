@@ -78,7 +78,6 @@ const DetailTaskForm = ({ formClass, currentTask, handleChangeTask }) => {
   ];
 
   const handleChangeForm = (e, item = null) => {
-    console.log("🚀 ~ file: DetailTaskForm.jsx ~ line 81 ~ handleChangeForm ~ item", item)
     const { value, name } = e.target;
     setForm({
       ...form,
@@ -106,17 +105,17 @@ const DetailTaskForm = ({ formClass, currentTask, handleChangeTask }) => {
   };
 
   const renderRadioButton = () => {
-    return radioList.map((item) => {
+    return radioList.map((item) =>
       <RadioCheckboxButton
         key={`${item.value}`}
         title={item.title}
         type="radio"
-        handleOnChange={(e) => handleChangeForm(e)}
+        onChange={(e) => handleChangeForm(e)}
         name={'status'}
         value={item.value}
         isChecked={form.status === item.value}
       />
-    })
+    )
   };
 
   const checkValidate = () => validData.title && validData.creator && validData.description;
