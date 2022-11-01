@@ -1,19 +1,30 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
 
-:root{
-  --primary: #675bf1; 
-  --new: #04be00; 
+:root {
+  --primary: #675bf1;
+  --new: #04be00;
   --doing: #7a8bf8;
   --done: #fc9f65;
 }
 
-p { 
-  font-size: 14px; 
-  line-height: 18px; 
-} 
+p {
+  font-size: 14px;
+  line-height: 18px;
+}
 
 
+a {
+
+  text-decoration: none;
+
+}
+
+a:-webkit-any-link {
+
+  color: black;
+
+}

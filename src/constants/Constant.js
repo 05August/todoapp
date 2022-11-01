@@ -1,20 +1,53 @@
 export const STATUS = {
+  NEW: "New",
 
-  NEW: 'New',
+  DOING: "Doing",
 
-  DOING: 'Doing',
-
-  DONE: 'Done',
-
+  DONE: "Done",
 };
 
-export const POSITION_KEYWORD = 9;
-// export const TodoList = [
-// ];
+export const ROUTE = {
+  All: "/",
 
-export const MODE = {
-  SHOW_LIST: 'showList',
-  ADD_NEW: 'addNew',
-  DETAIL_TASK: 'detailTask',
+  NEW: "/new",
+
+  DOING: "/doing",
+
+  DONE: "/done",
+
+  ADD_NEW: "/add-new",
+
+  DETAIL: "/detail",
+
+  DETAIL_TASK: "/detail/:idTask",
+
+  NOT_FOUND: "*",
 };
 
+export const SIDEBAR_ITEMS = [
+  {
+    url: "/",
+
+    title: "All Task",
+  },
+
+  {
+    url: "/new",
+
+    title: "New Task",
+  },
+
+  {
+    url: "/doing",
+
+    title: "Doing Task",
+  },
+
+  {
+    url: "/done",
+
+    title: "Done Task",
+  },
+];
+
+export const LIST_TO_DO_KEY = "l_t_d_k";

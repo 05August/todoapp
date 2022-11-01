@@ -1,54 +1,53 @@
-import React, { useState } from 'react';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
-import Header from './layout/Header.jsx';
-import Sidebar from './layout/Sidebar.jsx';
-import Body from './layout/Body.jsx'
-import Footer from './layout/Footer.jsx';
-import { MODE } from './constants/Constant.js';
-import Example from './components/Example.jsx';
-import './styles/style.css';
-
+import "./styles/style.css";
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./screens/Home";
+import All from "./screens/All";
+import New from "./screens/New";
+import Doing from "./screens/Doing";
+import Done from "./screens/Done";
+import EditAddNew from "./screens/EditAddNew";
+import { ROUTE } from "./constants/Constant";
 
 function App() {
-  const [renderMode, setRenderMode] = useState(MODE.SHOW_LIST);
-  const handleChangeRenderMode = (newMode = MODE.ADD_NEW) => {
-    setRenderMode(newMode);
-  }
-  const navigate = useNavigate();
   return (
     <div className="layout">
-      <Header
-        handleCreateNewTask={() => handleChangeRenderMode(MODE.ADD_NEW)}
-      />
-      <Sidebar />
-      <Body mode={renderMode} handleChangeRenderMode={handleChangeRenderMode} />
-      {renderMode === MODE.SHOW_LIST && <Footer />}
+      <Routes>
+        <Route
+          path={ROUTE.NOT_FOUND}
+          element={
+            <Link
+              to={ROUTE.All}
+              style={{
+                display: "block",
+                margin: "30% auto",
+                fontWeight: "bold",
+                fontSize: 60,
+                width: 475,
+              }}
+            >
+              404 NOT FOUND
+            </Link>
+          }
+        />
+
+        <Route path={ROUTE.All} element={<Home />}>
+          <Route path={ROUTE.ADD_NEW} element={<EditAddNew />} />
+
+          <Route path={ROUTE.NEW} element={<New />} />
+
+          <Route path={ROUTE.DOING} element={<Doing />} />
+
+          <Route path={ROUTE.DONE} element={<Done />} />
+
+          <Route path={ROUTE.DETAIL} element={<EditAddNew isEditTask />}>
+            <Route path={ROUTE.DETAIL_TASK} element={<EditAddNew isEditTask />} />
+            <Route index element={<div>không có</div>} />
+          </Route>
+
+          <Route index element={<All />} />
+        </Route>
+      </Routes>
     </div>
-
-    // <div className="layout">
-    //   <Routes>
-    //     <Route path="/" element={
-    //       <div>
-    //         <p >Home</p>
-    //         <Link to={'/add-new'}>To add-new</Link>
-    //         <button onClick={() => { navigate("add-new", { state: { userId: 213 } }) }}>To add-new</button>
-    //         <Outlet />
-    //       </div>
-    //     } />
-    //     <Route path="/add-new" element={
-    //       <div>
-    //         <p >Add new</p>
-    //         <Link to={'/'}>To Home</Link>
-    //         <button onClick={() => { navigate("/") }}>To Home</button>
-    //       </div>
-    //     } />
-    //   </Routes>
-    // </div>
-
-    // <div>
-    //   <Example />
-    // </div>
-
   );
 }
 

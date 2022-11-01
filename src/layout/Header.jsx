@@ -1,23 +1,41 @@
-import React, { useState } from 'react';
+import { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { ROUTE } from "../constants/Constant";
 
 const Header = ({ handleCreateNewTask }) => {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSearchClick = () => {
-    window.location.search = `?keyword=${keyword.trim()}`;
-    setKeyword('');
-  }
+    searchParams.set("keyword", keyword.trim().toLowerCase());
 
-  return (<div className="containerHeader">
-    <div className="containerHeader__left">
-      <button onClick={handleCreateNewTask}>Create New Task</button>
+    setSearchParams(searchParams);
+
+    setKeyword("");
+  };
+
+  return (
+    <div className="containerHeader">
+      <div className="containerHeader__left">
+        <button onClick={handleCreateNewTask}>
+          <Link to={ROUTE.ADD_NEW} style={{ color: "white" }}>
+            Create New Task
+          </Link>
+        </button>
+      </div>
+
+      <div className="containerHeader__right">
+        <input
+          placeholder="Type something to search"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+
+        <button onClick={handleSearchClick}>Search</button>
+      </div>
     </div>
-    <div className="containerHeader__right">
-      <input type="text" placeholder="Type something to search" value={keyword} onChange={(e) => setKeyword(e.target.value)} />
-      <button onClick={handleSearchClick}>Search</button>
-    </div>
-  </div>
-  )
-}
+  );
+};
 
 export default Header;
