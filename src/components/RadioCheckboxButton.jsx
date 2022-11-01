@@ -3,7 +3,7 @@ const RadioCheckboxButton = ({
   title,
   type,
   style,
-  onChange,
+  handleOnChange,
   name,
   disabled,
   isChecked,
@@ -14,7 +14,7 @@ const RadioCheckboxButton = ({
       className={`radioCheckboxClass ${radioCheckboxClass}`}
       style={{
         ...style,
-        cursor: disabled ? 'not-allowed' : 'pointer',
+        cursor: disabled ? "not-allowed" : "pointer",
       }}
     >
       <input
@@ -22,12 +22,12 @@ const RadioCheckboxButton = ({
         checked={isChecked}
         name={name}
         value={value}
-        onChange={onChange}
+        onChange={handleOnChange}
       />
       <span />
       <label htmlFor={name}>{title}</label>
     </div>
-  )
-}
+  );
+};
 
 export default RadioCheckboxButton;
