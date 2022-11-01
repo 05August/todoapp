@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import InputText from "../component/InputText.jsx";
-import Button from "../component/Button.jsx";
+import InputText from "../components/InputText.jsx";
+import Button from "../components/Button.jsx";
 
 const AddNewForm = ({ formClass, handleSubmit }) => {
   const [form, setForm] = useState({

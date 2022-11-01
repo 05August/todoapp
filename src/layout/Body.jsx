@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TodoItem from "../component/TodoItem.jsx";
+import TodoItem from "../components/TodoItem.jsx";
 import AddNewForm from "../shared/AddNewForm.jsx";
 import DetailTask from "../shared/DetailTaskForm";
 import { MODE, STATUS, POSITION_KEYWORD } from '../constants/Constant.js';

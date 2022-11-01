@@ -5,7 +5,7 @@ import Sidebar from './layout/Sidebar.jsx';
 import Body from './layout/Body.jsx'
 import Footer from './layout/Footer.jsx';
 import { MODE } from './constants/Constant.js';
-import Example from './component/Example.jsx';
+import Example from './components/Example.jsx';
 import './styles/style.css';
 
 
