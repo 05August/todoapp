@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
 import { SIDEBAR_ITEMS } from "../constants/Constant";
 
 const Sidebar = () => {
+  const location = useLocation();
   const renderSidebarItem = () => {
     return SIDEBAR_ITEMS.map((item) => (
       <div key={item.title} className="containerSidebar__item">
@@ -12,7 +12,7 @@ const Sidebar = () => {
             style={{
               fontSize: "24px",
 
-              color: "white",
+              color: item.url === location.pathname ? "#675bf1" : "white",
             }}
           >
             {item.title}

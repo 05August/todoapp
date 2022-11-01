@@ -8,6 +8,9 @@ import Done from "./screens/Done";
 import EditAddNew from "./screens/EditAddNew";
 import { ROUTE } from "./constants/Constant";
 
+import { CountProvider } from "./components/CountContext.jsx";
+import Example from "./components/Example";
+
 function App() {
   return (
     <div className="layout">
@@ -48,6 +51,9 @@ function App() {
         </Route>
       </Routes>
     </div>
+    // <CountProvider>
+    //   <Example />
+    // </CountProvider>
   );
 }
 
