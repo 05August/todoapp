@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { LIST_TO_DO_KEY, STATUS, ROUTE } from "../constants/Constant";
+import { LIST_TO_DO_KEY, STATUS, ROUTE, FEATURES, ALERT } from "../constants/Constant";
 import { localStorageUlti } from "../functions/localStorage";
+import { initMessage } from "../functions/shared";
 import InputText from "../components/InputText";
 import Button from "../components/Button";
 import RadioCheckboxButton from "../components/RadioCheckboxButton";
 import { setValidateRule } from "../functions/validation";
+import AlertContext from "../context/AlertContext";
 
 const radioList = [
   {
@@ -28,6 +30,12 @@ const radioList = [
 ];
 
 const { get, set } = localStorageUlti(LIST_TO_DO_KEY, []);
+
+const getMessageAddNew = initMessage(FEATURES.ADD_NEW);
+
+const getMessageEditTask = initMessage(FEATURES.EDIT_TASK);
+
+const getMessageDeleteTask = initMessage(FEATURES.DELETE_TASK);
 
 const EditAddNew = ({ isEditTask }) => {
   const [form, setForm] = useState({
@@ -74,6 +82,8 @@ const EditAddNew = ({ isEditTask }) => {
 
   const { idTask } = useParams();
 
+  const alert = useContext(AlertContext);
+
   const setDefaultValue = (e) => {
     e && e.preventDefault();
 
@@ -101,18 +111,35 @@ const EditAddNew = ({ isEditTask }) => {
 
     set([data, ...get()]);
 
+    alert.success(getMessageAddNew("Task is created successfully!"), ALERT.DEFAULT_TIME);
+
     navigate(ROUTE.All);
   };
 
   const handleChangeTask = (e, isDelete) => {
     e.preventDefault();
-
     const todoItemsLocalStorage = get();
-
     if (!isDelete) {
       todoItemsLocalStorage.splice(idTask, 1, form);
+      alert.success(
+        getMessageEditTask(`Task have id: ${idTask} which is updated successfully!`),
+        ALERT.DEFAULT_TIME
+      );
     } else {
-      todoItemsLocalStorage.splice(idTask, 1);
+      const deletedItem = todoItemsLocalStorage.splice(idTask, 1);
+      alert.success(
+        getMessageDeleteTask(`Task have id: ${idTask} which is deleted!`),
+        ALERT.DEFAULT_TIME,
+        {
+          label: "UNDO",
+          action: () => {
+            const todoItemsLocalStorage = get();
+            todoItemsLocalStorage.splice(idTask, 0, deletedItem[0]);
+            set(todoItemsLocalStorage);
+            window.location.reload();
+          },
+        }
+      );
     }
 
     set([...todoItemsLocalStorage]);

@@ -7,6 +7,7 @@ import Doing from "./screens/Doing";
 import Done from "./screens/Done";
 import EditAddNew from "./screens/EditAddNew";
 import { ROUTE } from "./constants/Constant";
+import Alert from "./components/Alert";
 
 import { CountProvider } from "./components/CountContext.jsx";
 import Example from "./components/Example";
@@ -50,6 +51,7 @@ function App() {
           <Route index element={<All />} />
         </Route>
       </Routes>
+      <Alert />
     </div>
     // <CountProvider>
     //   <Example />

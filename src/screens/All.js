@@ -5,6 +5,7 @@ import Footer from "../layout/Footer";
 import { LIST_TO_DO_KEY, ITEM_PER_PAGE } from "../constants/Constant";
 import { localStorageUlti } from "../functions/localStorage";
 import usePagination from "../hooks/usePagination";
+import clientServer from "../server/clientServer";
 
 const { get } = localStorageUlti(LIST_TO_DO_KEY, []);
 
@@ -18,6 +19,10 @@ const All = () => {
 
     ITEM_PER_PAGE
   );
+
+  // useEffect(() => {
+  //   clientServer.get("todoitems").then((todoItems) => setTodoItems(todoItems.data));
+  // }, []);
 
   useEffect(() => {
     const listTodoItem = get().filter((item) =>

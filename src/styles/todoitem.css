@@ -38,11 +38,12 @@
 }
 
 .containerItem__lineBreak {
-  height: 2px;
+  height: 1px;
   background: var(--primary) !important;
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
   border-radius: 1px;
+
 }
 
 .containerItem__description>p:last-child {
