@@ -1,8 +1,8 @@
 export const setValidateRule = (form) => {
   const { title, creator, description } = form;
 
-  return [
-    {
+  return {
+    title: {
       label: "Title",
       placeholder: "Type title",
       name: "title",
@@ -11,7 +11,7 @@ export const setValidateRule = (form) => {
       messageError: "Please type title, it has length from 6 to 18",
     },
 
-    {
+    creator: {
       label: "Creator",
       placeholder: "Type name of Creator",
       name: "creator",
@@ -20,7 +20,7 @@ export const setValidateRule = (form) => {
       messageError: "Please type Name of Creator, it has length from 6 to 12",
     },
 
-    {
+    description: {
       label: "Description",
       placeholder: "Type description details",
       name: "description",
@@ -28,5 +28,5 @@ export const setValidateRule = (form) => {
       regExPattern: /^.{0,150}$/,
       messageError: "Please type Description, it has length from 0 to 150",
     },
-  ];
+  };
 };
