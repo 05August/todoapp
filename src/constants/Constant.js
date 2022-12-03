@@ -7,21 +7,22 @@ export const STATUS = {
 };
 
 export const ROUTE = {
-  All: "/",
+  All: "/home",
 
-  NEW: "/new",
+  NEW: "/home/new",
 
-  DOING: "/doing",
+  DOING: "/home/doing",
 
-  DONE: "/done",
+  DONE: "/home/done",
 
-  ADD_NEW: "/add-new",
+  ADD_NEW: "/home/add-new",
 
-  DETAIL: "/detail",
+  DETAIL: "/home/detail",
 
-  DETAIL_TASK: "/detail/:idTask",
+  DETAIL_TASK: "/home/detail/:idTask",
 
   NOT_FOUND: "*",
+  LOGIN: "/login",
 };
 
 export const SIDEBAR_ITEMS = [

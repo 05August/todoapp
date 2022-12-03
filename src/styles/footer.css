@@ -19,7 +19,7 @@
   font-size: 18px;
   color: var(--primary);
   border-right: 1px solid var(--primary);
-  padding-bottom: 3px;
+  /* padding-bottom: 3px; */
   cursor: pointer;
 }
 
@@ -30,7 +30,7 @@
 .containerFooter>div:first-child,
 .containerFooter>div:last-child {
   font-size: 30px;
-  padding-bottom: 8px;
+  padding-bottom: 2px;
 }
 
 .containerFooter__page--active {

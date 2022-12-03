@@ -19,6 +19,7 @@
 
 
 .inputText>label {
+  color: black;
   font-weight: bold;
   font-size: 14px;
   margin-right: 5px;
@@ -107,6 +108,7 @@
 }
 
 .radioCheckboxClass>label {
+  color: black;
   font-size: 14px;
   line-height: 14px;
   font-weight: bold;

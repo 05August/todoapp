@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ROUTE } from "../constants/Constant";
 
-const Header = ({ handleCreateNewTask }) => {
+const Header = () => {
   const [keyword, setKeyword] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,7 +18,7 @@ const Header = ({ handleCreateNewTask }) => {
   return (
     <div className="containerHeader">
       <div className="containerHeader__left">
-        <button onClick={handleCreateNewTask}>
+        <button>
           <Link to={ROUTE.ADD_NEW} style={{ color: "white" }}>
             Create New Task
           </Link>
