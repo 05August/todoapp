@@ -9,6 +9,9 @@ import RadioCheckboxButton from "../components/RadioCheckboxButton";
 import { setValidateRule } from "../functions/validation";
 import AlertContext from "../context/AlertContext";
 import clientServer from "../server/clientServer";
+import { localStorageUlti } from "../functions/localStorage";
+
+const { get } = localStorageUlti("data");
 
 const radioList = [
   {
@@ -27,38 +30,39 @@ const radioList = [
   },
 ];
 
-const DEFAULT_VALUE = {
-  id: "",
-  title: "",
-  creator: "",
-  description: "",
-  status: STATUS.NEW,
-};
-
 const getMessageAddNew = initMessage(FEATURES.ADD_NEW);
 const getMessageEditTask = initMessage(FEATURES.EDIT_TASK);
 const getMessageDeleteTask = initMessage(FEATURES.DELETE_TASK);
 
 const EditAddNew = ({ isEditTask }) => {
+  const alert = useContext(AlertContext);
+  const creator = get().creator;
+  const DEFAULT_VALUE = {
+    id: "",
+    title: "",
+    creator: creator,
+    description: "",
+    status: STATUS.NEW,
+  };
   const [form, setForm] = useState(DEFAULT_VALUE);
   const [validData, setValidData] = useState({
     title: false,
-    creator: false,
+    creator: true,
     description: true,
   });
-
-  const alert = useContext(AlertContext);
 
   const formValueRef = useRef(null);
   useEffect(() => {
     if (idTask) {
       clientServer
-        .get(`todoItems/${idTask}`)
+        .get(`todoList?creator=${creator}`)
         .then((res) => {
-          const { creator, description, title } = res.data;
-          setForm(res.data);
-          const formField = setValidateRule(res.data);
-          formValueRef.current = res.data;
+          const todoList = res.data;
+          const currentTask = todoList.find((item) => item.id === idTask);
+          const { description, title } = currentTask;
+          setForm(currentTask);
+          const formField = setValidateRule(currentTask);
+          formValueRef.current = currentTask;
           setValidData({
             title: formField.title.regExPattern.test(title),
             creator: formField.creator.regExPattern.test(creator),
@@ -77,12 +81,12 @@ const EditAddNew = ({ isEditTask }) => {
 
   const setDefaultValue = (e) => {
     e && e.preventDefault();
-    const { creator, description, title } = formValueRef.current;
+    const { description, title } = formValueRef.current;
     setForm(formValueRef.current);
     const formField = setValidateRule(formValueRef.current);
     setValidData({
       title: formField.title.regExPattern.test(title),
-      creator: formField.creator.regExPattern.test(creator),
+      // creator: formField.creator.regExPattern.test(creator),
       description: formField.description.regExPattern.test(description),
     });
   };
@@ -114,7 +118,7 @@ const EditAddNew = ({ isEditTask }) => {
     };
 
     clientServer
-      .post("todoItems", data)
+      .post("todoList", data)
       .then(() => {
         alert.success(
           getMessageAddNew("Task is created successfully!"),
@@ -132,10 +136,10 @@ const EditAddNew = ({ isEditTask }) => {
     e.preventDefault();
     if (!isDelete) {
       clientServer
-        .patch(`todoItems/${idTask}`, form)
+        .patch(`todoList/${idTask}`, form)
         .then(() => {
           alert.success(
-            getMessageEditTask(`Task have id: ${idTask} which is updated successfully!`),
+            getMessageEditTask(`Task has been updated successfully!`),
             ALERT.DEFAULT_TIME
           );
           navigate(ROUTE.All);
@@ -145,10 +149,10 @@ const EditAddNew = ({ isEditTask }) => {
         });
     } else {
       clientServer
-        .delete(`todoItems/${idTask}`)
+        .delete(`todoList/${idTask}`)
         .then(() => {
           alert.success(
-            getMessageDeleteTask(`Task have id: ${idTask} which is deleted!`),
+            getMessageDeleteTask(`Task has been deleted!`),
             ALERT.DEFAULT_TIME
             // we temporarily disable Undo feature
             // {
@@ -173,12 +177,18 @@ const EditAddNew = ({ isEditTask }) => {
     const formField = setValidateRule(form || DEFAULT_VALUE);
     return Object.keys(formField).map((keyItem, index) => {
       const { value, name, messageError } = formField[keyItem];
+      // if (!isEditTask && keyItem !== "creator") {
+      //   formField[keyItem].value = "";
+      // }
       return (
         <InputText
           {...formField[keyItem]}
           key={`${name}_${index}`}
+          disabled={name === "creator"}
+          cursor={name === "creator" ? "not-allowed" : "text"}
           onChange={handleChangeForm}
           error={!value || validData[name] ? "" : messageError}
+          mode={isEditTask}
         />
       );
     });
@@ -203,9 +213,9 @@ const EditAddNew = ({ isEditTask }) => {
 
   return (
     <form className={`formClassContainer`}>
-      {renderForm()}
       {isEditTask ? (
         <>
+          {renderForm()}
           <div
             style={{
               display: "flex",
@@ -235,14 +245,17 @@ const EditAddNew = ({ isEditTask }) => {
           </div>
         </>
       ) : (
-        <div>
-          <Button
-            title={"Save"}
-            type={"submit"}
-            disabled={!checkValidate()}
-            onClick={handleSubmit}
-          />
-        </div>
+        <>
+          {renderForm()}
+          <div>
+            <Button
+              title={"Save"}
+              type={"submit"}
+              disabled={!checkValidate()}
+              onClick={handleSubmit}
+            />
+          </div>
+        </>
       )}
     </form>
   );

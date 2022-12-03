@@ -2,12 +2,18 @@ import React, { useState } from "react";
 
 import { ALERT } from "../constants/Constant.js";
 
+import { localStorageUlti } from "../functions/localStorage.js";
+
 const AlertContext = React.createContext(null);
+
+const { get } = localStorageUlti("data", false);
 
 const AlertProvider = ({ children }) => {
   const [alert, setAlert] = useState(ALERT.NONE);
 
   const [alertText, setAlertText] = useState(null);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(get().isLoggedIn);
 
   const [callBack, setCallBack] = useState({
     label: "",
@@ -21,6 +27,8 @@ const AlertProvider = ({ children }) => {
         alert: alert,
         alertText: alertText,
         callBack,
+        isLoggedIn: isLoggedIn,
+        setIsLoggedIn: setIsLoggedIn,
         success: (text, timeout, callBack) => {
           setAlertText(text);
           setAlert(ALERT.SUCCESS);
@@ -31,7 +39,7 @@ const AlertProvider = ({ children }) => {
         },
         error: (text, timeout, callBack) => {
           setAlertText(text);
-          setAlertText(ALERT.ERROR);
+          setAlert(ALERT.ERROR);
           callBack && setCallBack(callBack);
           setTimeout(() => {
             setAlert(ALERT.NONE);

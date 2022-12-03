@@ -1,32 +1,53 @@
 {
-  "posts": [
+  "account": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "id": "admin1234",
+      "account": "admin1",
+      "email": "admin1@gamil.com",
+      "password": "admin1"
+    },
+    {
+      "id": "admin12",
+      "account": "admin12",
+      "email": "admin1@gamil.com",
+      "password": "admin12"
+    },
+    {
+      "id": "-bvH7g4b_7Pt31OCrf18w",
+      "account": "admin2",
+      "email": "thuanthieu90@gmail.com",
+      "password": "admin2"
+    },
+    {
+      "id": "sAU6fupZqNk31ufpTwX40",
+      "account": "admin3",
+      "email": "admin3@gamil.com",
+      "password": "admin3"
+    },
+    {
+      "id": "CJuRCeHb3c3-CkjQFR5Qk",
+      "account": "admin4",
+      "email": "admin4@gmail.com",
+      "password": "admin4"
+    },
+    {
+      "id": "dqfBd0jN0uerbQ5EyeSk6",
+      "account": "admin1234",
+      "email": "admin1@gmail.com",
+      "password": "admin1"
     }
   ],
-  "comments": [
+  "todoList": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
-  "todoItems": [
-    {
-      "id": 2,
+      "id": "2",
       "title": "React Context",
-      "creator": "Hoang Loc",
+      "creator": "admin1",
       "description": "Learn in 3 days",
-      "status": "Doing"
+      "status": "Done"
     },
     {
       "title": "Learn JSON server3",
-      "creator": "Hoang Loc",
+      "creator": "admin1",
       "description": "Learn in 1 day",
       "status": "Doing",
       "id": "NfoNSc-Oe5VzUTObRTQvy"
@@ -34,36 +55,78 @@
     {
       "id": "XTvDuzg21G9uty7or1ifV",
       "title": "Learn Axios",
-      "creator": "Hoang Loc",
+      "creator": "admin1",
       "description": "Learn in 2 days",
-      "status": "New"
+      "status": "Done"
     },
     {
       "id": "8drCCBQaFM5PUPQPxWSuA",
       "title": "Learn React 2",
-      "creator": "Hoang Loc",
+      "creator": "admin1",
       "description": "Learn in a week",
-      "status": "New"
+      "status": "Doing"
     },
     {
       "id": "s9Glv-4pkqg5pypbXGvA0",
       "title": "Learn RestAPI",
-      "creator": "Hoang Loc",
+      "creator": "admin1",
       "description": "Learn RestAPI",
       "status": "New"
     },
     {
       "id": "WPBmhkFvUYG03IClkrZQd",
       "title": "sfasfdfd",
-      "creator": "gdgdsgsgsd",
+      "creator": "admin1",
       "description": "dgdsgsg",
       "status": "New"
     },
     {
       "id": "bBcWjL_VAnSNePG-J__wr",
       "title": "thuận có đẹp chai?",
-      "creator": "thuânnnn",
+      "creator": "admin1",
       "description": "Có ",
+      "status": "New"
+    },
+    {
+      "id": "4HATQg4q1At8mvYCJDVt_",
+      "title": "thuan dep chai",
+      "creator": "admin1",
+      "description": "thuan dep chai so 1 vutru",
+      "status": "New"
+    },
+    {
+      "id": "NrivGkTgSF1m3Jph7rHmD",
+      "title": "thuandepchai",
+      "creator": "admin12",
+      "description": "thuận có đẹp ",
+      "status": "Done"
+    },
+    {
+      "id": "WFhAY8FzdrSSdUFIw_oPO",
+      "title": "thuận đây ",
+      "creator": "admin12",
+      "description": "thuận ở đâu?",
+      "status": "Doing"
+    },
+    {
+      "id": "0UqR3Seu5MvMPQgBiic1-",
+      "title": "alo 123",
+      "creator": "admin12",
+      "description": "test thử chức năng",
+      "status": "New"
+    },
+    {
+      "id": "H_0GZoTFCg_E47DQuJhAS",
+      "title": "thử ở admin4",
+      "creator": "admin4",
+      "description": "thuận đã thử",
+      "status": "New"
+    },
+    {
+      "id": "vqy6NLnJuSXw9cLjCnBXT",
+      "title": "thusnj",
+      "creator": "admin1",
+      "description": "thuándf;sl",
       "status": "New"
     }
   ]

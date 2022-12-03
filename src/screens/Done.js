@@ -5,6 +5,9 @@ import Footer from "../layout/Footer";
 import { STATUS, ITEM_PER_PAGE } from "../constants/Constant";
 import usePagination from "../hooks/usePagination";
 import clientServer from "../server/clientServer";
+import { localStorageUlti } from "../functions/localStorage";
+
+const { get } = localStorageUlti("data");
 
 const Done = () => {
   const [todoItems, setTodoItems] = useState([]);
@@ -17,9 +20,11 @@ const Done = () => {
     ITEM_PER_PAGE
   );
 
+  const creator = get().creator;
+
   useEffect(() => {
     clientServer
-      .get("todoItems")
+      .get(`todoList?creator=${creator}`)
       .then((res) => {
         const listTodoItem = res.data.filter(
           (item) =>
