@@ -53,9 +53,6 @@ function App() {
       </Routes>
       <Alert />
     </div>
-    // <CountProvider>
-    //   <Example />
-    // </CountProvider>
   );
 }
 
