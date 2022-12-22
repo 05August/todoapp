@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { STATUS, ROUTE, FEATURES, ALERT } from "../constants/Constant";
 import { initMessage } from "../functions/shared";
@@ -9,6 +9,9 @@ import RadioCheckboxButton from "../components/RadioCheckboxButton";
 import { setValidateRule } from "../functions/validation";
 import AlertContext from "../context/AlertContext";
 import clientServer from "../server/clientServer";
+import { observer } from "mobx-react";
+import todoStore from "../stores/todoStore";
+import alertStore from "../stores/alertStore";
 
 const radioList = [
   {
@@ -40,6 +43,8 @@ const getMessageEditTask = initMessage(FEATURES.EDIT_TASK);
 const getMessageDeleteTask = initMessage(FEATURES.DELETE_TASK);
 
 const EditAddNew = ({ isEditTask }) => {
+  const [searchParams] = useSearchParams();
+
   const [form, setForm] = useState(DEFAULT_VALUE);
   const [validData, setValidData] = useState({
     title: false,
@@ -116,55 +121,47 @@ const EditAddNew = ({ isEditTask }) => {
     clientServer
       .post("todoItems", data)
       .then(() => {
-        alert.success(
+        alertStore.success(
           getMessageAddNew("Task is created successfully!"),
           ALERT.DEFAULT_TIME
         );
         navigate(ROUTE.All);
       })
-
       .catch((err) => {
-        alert.error(getMessageAddNew(err.message), ALERT.DEFAULT_TIME);
+        alertStore.error(getMessageAddNew(err.message), ALERT.DEFAULT_TIME);
       });
   };
 
   const handleChangeTask = (e, isDelete) => {
     e.preventDefault();
+
     if (!isDelete) {
       clientServer
         .patch(`todoItems/${idTask}`, form)
         .then(() => {
-          alert.success(
+          alertStore.success(
             getMessageEditTask(`Task have id: ${idTask} which is updated successfully!`),
             ALERT.DEFAULT_TIME
           );
           navigate(ROUTE.All);
         })
+
         .catch((err) => {
-          alert.error(getMessageEditTask(err.message), ALERT.DEFAULT_TIME);
+          alertStore.error(getMessageEditTask(err.message), ALERT.DEFAULT_TIME);
         });
     } else {
       clientServer
         .delete(`todoItems/${idTask}`)
         .then(() => {
-          alert.success(
+          alertStore.success(
             getMessageDeleteTask(`Task have id: ${idTask} which is deleted!`),
             ALERT.DEFAULT_TIME
-            // we temporarily disable Undo feature
-            // {
-            //   label: 'UNDO',
-            //   action: () => {
-            //     const todoItemsLocalStorage = get();
-            //     todoItemsLocalStorage.splice(idTask, 0, deletedItem[0]);
-            //     set(todoItemsLocalStorage);
-            //     window.location.reload();
-            //   },
-            // }
           );
           navigate(ROUTE.All);
         })
+
         .catch((err) => {
-          alert.error(getMessageDeleteTask(err.message), ALERT.DEFAULT_TIME);
+          alertStore.error(getMessageDeleteTask(err.message), ALERT.DEFAULT_TIME);
         });
     }
   };
@@ -248,4 +245,4 @@ const EditAddNew = ({ isEditTask }) => {
   );
 };
 
-export default EditAddNew;
+export default observer(EditAddNew);

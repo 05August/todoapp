@@ -21,14 +21,14 @@
       "id": 2,
       "title": "React Context",
       "creator": "Hoang Loc",
-      "description": "Learn in 3 days",
+      "description": "Learn in 3 dayss",
       "status": "Doing"
     },
     {
       "title": "Learn JSON server3",
       "creator": "Hoang Loc",
       "description": "Learn in 1 day",
-      "status": "Doing",
+      "status": "New",
       "id": "NfoNSc-Oe5VzUTObRTQvy"
     },
     {
@@ -36,14 +36,14 @@
       "title": "Learn Axios",
       "creator": "Hoang Loc",
       "description": "Learn in 2 days",
-      "status": "New"
+      "status": "Doing"
     },
     {
       "id": "8drCCBQaFM5PUPQPxWSuA",
       "title": "Learn React 2",
       "creator": "Hoang Loc",
       "description": "Learn in a week",
-      "status": "New"
+      "status": "Done"
     },
     {
       "id": "s9Glv-4pkqg5pypbXGvA0",
@@ -53,17 +53,10 @@
       "status": "New"
     },
     {
-      "id": "WPBmhkFvUYG03IClkrZQd",
-      "title": "sfasfdfd",
-      "creator": "gdgdsgsgsd",
-      "description": "dgdsgsg",
-      "status": "New"
-    },
-    {
-      "id": "bBcWjL_VAnSNePG-J__wr",
-      "title": "thuận có đẹp chai?",
-      "creator": "thuânnnn",
-      "description": "Có ",
+      "id": "b7UxJ9DreqBEfVLm__UoO",
+      "title": "Learn Redux",
+      "creator": "thuann",
+      "description": "Learn in a day",
       "status": "New"
     }
   ]

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef } from "react";
-import AlertContext from "../context/AlertContext";
-import { ALERT } from "../constants/Constant.js";
+import { observer } from "mobx-react";
+import { ALERT } from "../constants/Constant";
+import alertStore from "../stores/alertStore";
 
 const Alert = () => {
-  const alert = useContext(AlertContext);
+  const alert = alertStore.AlertContent;
   const { action, label } = alert.callBack;
   const callBackRef = useRef(null);
-
   useEffect(() => {
     if (callBackRef.current) {
       callBackRef.current.focus();
@@ -14,13 +14,11 @@ const Alert = () => {
   });
 
   const chooseStyleAlert = () => {
-    switch (alert.alert) {
+    switch (alert.status) {
       case ALERT.SUCCESS:
         return "alert--success";
-
       case ALERT.ERROR:
         return "alert--error";
-
       default:
         return "alert--none";
     }
@@ -28,12 +26,10 @@ const Alert = () => {
 
   return (
     <div className={`alert ${chooseStyleAlert()}`}>
-      <p className="alert__content">{alert.alertText}</p>
-
-      <button className="alert__clear" onClick={alert.clear}>
+      <p className="alert__content">{alert.text}</p>
+      <button className="alert__clear" onClick={() => alertStore.clear()}>
         DISMISS
       </button>
-
       {label && (
         <button className="alert__clear" onClick={action} ref={callBackRef}>
           {label}
@@ -43,4 +39,4 @@ const Alert = () => {
   );
 };
 
-export default Alert;
+export default observer(Alert);
