@@ -43,48 +43,32 @@ const getMessageEditTask = initMessage(FEATURES.EDIT_TASK);
 const getMessageDeleteTask = initMessage(FEATURES.DELETE_TASK);
 
 const EditAddNew = ({ isEditTask }) => {
-  const [searchParams] = useSearchParams();
-
   const [form, setForm] = useState(DEFAULT_VALUE);
   const [validData, setValidData] = useState({
     title: false,
     creator: false,
     description: true,
   });
-
-  const alert = useContext(AlertContext);
-
-  const formValueRef = useRef(null);
+  const { CurrentItem, reqDetailTask, reqAddNewTask, reqEditTask, reqDeleteTask } =
+    todoStore;
   useEffect(() => {
-    if (idTask) {
-      clientServer
-        .get(`todoItems/${idTask}`)
-        .then((res) => {
-          const { creator, description, title } = res.data;
-          setForm(res.data);
-          const formField = setValidateRule(res.data);
-          formValueRef.current = res.data;
-          setValidData({
-            title: formField.title.regExPattern.test(title),
-            creator: formField.creator.regExPattern.test(creator),
-            description: formField.description.regExPattern.test(description),
-          });
-        })
-        .catch((err) => {
-          console.error("error:", err);
-        });
-    }
+    reqDetailTask(idTask);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    setDefaultValue();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [CurrentItem]);
 
   const navigate = useNavigate();
   const { idTask } = useParams();
 
   const setDefaultValue = (e) => {
     e && e.preventDefault();
-    const { creator, description, title } = formValueRef.current;
-    setForm(formValueRef.current);
-    const formField = setValidateRule(formValueRef.current);
+    const { creator, description, title } = todoStore.CurrentItem;
+    setForm(CurrentItem);
+    const formField = setValidateRule(CurrentItem);
     setValidData({
       title: formField.title.regExPattern.test(title),
       creator: formField.creator.regExPattern.test(creator),
@@ -118,51 +102,49 @@ const EditAddNew = ({ isEditTask }) => {
       status: STATUS.NEW,
     };
 
-    clientServer
-      .post("todoItems", data)
-      .then(() => {
+    reqAddNewTask(
+      data,
+      () => {
         alertStore.success(
           getMessageAddNew("Task is created successfully!"),
           ALERT.DEFAULT_TIME
         );
         navigate(ROUTE.All);
-      })
-      .catch((err) => {
-        alertStore.error(getMessageAddNew(err.message), ALERT.DEFAULT_TIME);
-      });
+      },
+
+      (err) => alertStore.error(getMessageAddNew(err.message), ALERT.DEFAULT_TIME)
+    );
   };
 
   const handleChangeTask = (e, isDelete) => {
     e.preventDefault();
 
     if (!isDelete) {
-      clientServer
-        .patch(`todoItems/${idTask}`, form)
-        .then(() => {
+      reqEditTask(
+        form,
+        () => {
           alertStore.success(
             getMessageEditTask(`Task have id: ${idTask} which is updated successfully!`),
             ALERT.DEFAULT_TIME
           );
           navigate(ROUTE.All);
-        })
-
-        .catch((err) => {
-          alertStore.error(getMessageEditTask(err.message), ALERT.DEFAULT_TIME);
-        });
+        },
+        (err) => alertStore.error(getMessageEditTask(err.message), ALERT.DEFAULT_TIME)
+      );
     } else {
-      clientServer
-        .delete(`todoItems/${idTask}`)
-        .then(() => {
+      reqDeleteTask(
+        idTask,
+        () => {
           alertStore.success(
             getMessageDeleteTask(`Task have id: ${idTask} which is deleted!`),
             ALERT.DEFAULT_TIME
           );
           navigate(ROUTE.All);
-        })
-
-        .catch((err) => {
+        },
+        (err) => {
           alertStore.error(getMessageDeleteTask(err.message), ALERT.DEFAULT_TIME);
-        });
+        }
+      );
     }
   };
 

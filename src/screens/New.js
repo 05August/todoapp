@@ -20,19 +20,7 @@ const New = () => {
   );
 
   useEffect(() => {
-    clientServer
-      .get("todoItems")
-      .then((res) => {
-        const listTodoItem = res.data.filter(
-          (item) =>
-            item.status === STATUS.NEW &&
-            item.title.toLowerCase().includes(searchParams.get("keyword") || "")
-        );
-        todoStore.setTodos(listTodoItem);
-      })
-      .catch((err) => {
-        console.error("error:", err);
-      });
+    todoStore.reqTodosByStatus(STATUS.NEW, searchParams.get("keyword") || "");
   }, [searchParams]);
 
   return (

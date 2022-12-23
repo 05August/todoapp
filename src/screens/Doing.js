@@ -18,19 +18,7 @@ const Doing = () => {
   );
 
   useEffect(() => {
-    clientServer
-      .get("todoItems")
-      .then((res) => {
-        const listTodoItem = res.data.filter(
-          (item) =>
-            item.status === STATUS.DOING &&
-            item.title.toLowerCase().includes(searchParams.get("keyword") || "")
-        );
-        todoStore.setTodos(listTodoItem);
-      })
-      .catch((err) => {
-        console.error("error:", err);
-      });
+    todoStore.reqTodosByStatus(STATUS.DOING, searchParams.get("keyword") || "");
   }, [searchParams]);
 
   return (
