@@ -15,3 +15,13 @@ export const initMessage = (feature) => {
       return () => "";
   }
 };
+
+export const generateActionCreator = (action) => {
+  return {
+    [action]: `${action}`,
+
+    [`${action}_SUCCESS`]: `${action}_SUCCESS`,
+
+    [`${action}_FAILED`]: `${action}_FAILED`,
+  };
+};

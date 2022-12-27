@@ -16,10 +16,18 @@ const todos = (state = initialValue, action) => {
       return [...state, action.payload];
 
     case TODO.EDIT_TASK:
-      return state.map((todo) =>
-        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
+      const todos = state.map((item) =>
+        item.id === action.payload.id ? action.payload : item
       );
 
+      return [...todos];
+
+    case TODO.DELETE_TASK:
+      const indexItem = state.findIndex((item) => item.id === action.payload.id);
+
+      state.splice(indexItem, 1);
+
+      return [...state];
     default:
       return state;
   }
