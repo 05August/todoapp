@@ -7,22 +7,22 @@ export const STATUS = {
 };
 
 export const ROUTE = {
-  All: "/home",
+  All: "https://todoapp-virid-delta.vercel.app/home",
 
-  NEW: "/home/new",
+  NEW: "https://todoapp-virid-delta.vercel.app/home/new",
 
-  DOING: "/home/doing",
+  DOING: "https://todoapp-virid-delta.vercel.app/home/doing",
 
-  DONE: "/home/done",
+  DONE: "https://todoapp-virid-delta.vercel.app/home/done",
 
-  ADD_NEW: "/home/add-new",
+  ADD_NEW: "https://todoapp-virid-delta.vercel.app/home/add-new",
 
-  DETAIL: "/home/detail",
+  DETAIL: "https://todoapp-virid-delta.vercel.app/home/detail",
 
-  DETAIL_TASK: "/home/detail/:idTask",
+  DETAIL_TASK: "https://todoapp-virid-delta.vercel.app/home/detail/:idTask",
 
   NOT_FOUND: "*",
-  LOGIN: "/login",
+  LOGIN: "https://todoapp-virid-delta.vercel.app/login",
 };
 
 export const SIDEBAR_ITEMS = [
